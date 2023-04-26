@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Stomatology.Data;
+using Stomatology.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//DbContext configuration
 ConfigurationManager configuration = builder.Configuration;
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
+
+//Services configuration
+builder.Services.AddScoped<IDoctorsService, DoctorsService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

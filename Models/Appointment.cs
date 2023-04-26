@@ -8,6 +8,7 @@ namespace Stomatology.Models
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public Doctor Doctor { get; set; }
+        public Procedure Procedure { get; set; }
 
     }
 }
