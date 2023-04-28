@@ -4,10 +4,10 @@ namespace Stomatology.Data.Services
 {
     public interface IDoctorsService
     {
-        Task<IEnumerable<Doctor>> GetAllDoctors();
-        Doctor GetDoctorById(int id);
-        void AddDoctor(Doctor doctor);
-        Doctor UpdateDoctor(int id, Doctor doctor);
-        void DeleteDoctor(int id);
+        Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
+        Task<Doctor> GetDoctorByIdAsync(int id);
+        Task AddDoctorAsync(Doctor doctor);
+        Task<Doctor> UpdateDoctorAsync(int id, Doctor doctor);
+        Task DeleteDoctorAsync(int id);
     }
 }

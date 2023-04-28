@@ -11,30 +11,37 @@ namespace Stomatology.Data.Services
             _context = context;
         }
 
-        public void AddDoctor(Doctor doctor)
+        public async Task AddDoctorAsync(Doctor doctor)
         {
-            throw new NotImplementedException();
+           await _context.Doctors.AddAsync(doctor);
+           await _context.SaveChangesAsync();
         }
 
-        public void DeleteDoctor(int id)
+        public async Task DeleteDoctorAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Doctors.FirstOrDefaultAsync(x => x.Id == id);
+            _context.Doctors.Remove(result);
+            await _context.SaveChangesAsync();
+
         }
 
-        public async Task<IEnumerable<Doctor>> GetAllDoctors()
+        public async Task<IEnumerable<Doctor>> GetAllDoctorsAsync()
         {
             var result = await _context.Doctors.ToListAsync();
             return result;
         }
 
-        public Doctor GetDoctorById(int id)
+        public async Task<Doctor> GetDoctorByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Doctors.FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public Doctor UpdateDoctor(int id, Doctor doctor)
+        public async Task<Doctor> UpdateDoctorAsync(int id, Doctor doctor)
         {
-            throw new NotImplementedException();
+            _context.Update(doctor);
+            await _context.SaveChangesAsync();
+            return doctor;
         }
     }
 }
